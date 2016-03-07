@@ -1,14 +1,14 @@
-import org.springframework.context.ApplicationContext;
+import Loggers.EventLogger;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Date;
 
 /**
  * Created by Newman on 2/27/16.
  */
  class App {
     Client client;
-    EventLogger logger;
+    static EventLogger logger;
+    static Event event;
 
     public App (Client client, EventLogger logger){
         this.client=client;
@@ -17,15 +17,19 @@ import java.util.Date;
 
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
-        app.logEvent("name = ");
+        event = (Event) ctx.getBean("event");
+        event.setMessage("Hello I am new Event ");
+        app.logEvent("I am logging event by logger method", event);
+        // app.logEvent("name = ");
+        ctx.close();
     }
 
-    private void logEvent(String msg){
+    private void logEvent(String msg, Event event){
 
-        System.out.println(msg + client.getName());
-
+        logger.logEvent(event);
+        System.out.println(msg);
     }
 
 

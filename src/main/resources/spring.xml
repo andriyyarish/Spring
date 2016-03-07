@@ -7,9 +7,8 @@
     <bean id="client" class="Client">
         <constructor-arg index="0" value="1"/>
         <constructor-arg type="java.lang.String" index="1" value="John Smith"/>
+        <property name="greeting" value="Hello there"/>
     </bean>
-
-    <bean id="eventLogger" class="ConsoleEventLogger"/>
 
     <bean id="app" class="App">
         <constructor-arg ref ="client"/>
@@ -19,8 +18,13 @@
     <bean id="event" class="Event" scope="prototype">
         <constructor-arg >
                 <bean class="java.util.Date"/>
+            </constructor-arg>
+        <constructor-arg>
+            <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance" />
         </constructor-arg>
     </bean>
+
+    <import resource="loggers.xml"/>
 
 </beans>
 

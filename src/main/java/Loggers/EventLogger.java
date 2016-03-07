@@ -1,3 +1,5 @@
+package Loggers;
+
 /**
  * Created by Newman on 2/27/16.
  */

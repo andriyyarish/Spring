@@ -1,3 +1,4 @@
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -6,19 +7,29 @@ import java.util.Random;
  */
 public class Event {
 
-public Event(Date date){
+public Event(Date date, DateFormat df){
     this.setId();
     this.setDate(date);
+    this.setDf(df);
 }
 
     private int id;
     private String message;
     private Date date;
 
+    public DateFormat getDf() {
+        return df;
+    }
+
+    public void setDf(DateFormat df) {
+        this.df = df;
+    }
+
+    private DateFormat df;
+
 
     public String toString(){
-        return new String("id = " + id + "date = " + date + "message = " + message);
-
+        return new String(" id = " + id + " date = " + df.format(date) + " message = " + message);
     }
 
 

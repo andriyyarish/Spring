@@ -4,6 +4,17 @@ class Client {
 
     private String name;
     private String id;
+    private String greating;
+
+    public String getGreating() {
+        return greating;
+    }
+
+    public void setGreating(String greating) {
+        this.greating = greating;
+    }
+
+
 
     public Client(String id, String name) {
         setId(id);
